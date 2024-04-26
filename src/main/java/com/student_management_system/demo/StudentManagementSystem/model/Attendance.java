@@ -17,22 +17,23 @@ public class Attendance {
             sequenceName = "attendance_sequence",
             allocationSize = 1
     )
-//    @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "attendance_sequence"
-//    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "attendance_sequence"
+    )
     private Integer SlNum;
 
-    private String USN;
     @ManyToOne
-    @JoinColumn(name = "USN", referencedColumnName = "USN", insertable = false, updatable = false)
+    @JoinColumn(name = "USN", referencedColumnName = "USN", updatable = false)
     private Student student;
+    @Column(insertable=false, updatable=false)
+    private Long USN;
 
-
-    private Long SubjectID;
     @ManyToOne
-    @JoinColumn(name = "SubjectID", referencedColumnName = "subjectID", insertable = false, updatable = false)
+    @JoinColumn(name = "subjectID", referencedColumnName = "subjectID", updatable = false)
     private Subject subject;
+    @Column(insertable=false, updatable=false)
+    private Long subjectID;
 
     private LocalDate date;
     private String status; // Present or Absent
@@ -42,21 +43,42 @@ public class Attendance {
         Absent
     }
 
+    // Constructors
+    public Attendance() {
+    }
+
+    public Attendance(Integer slNum, Long USN, Student student, Long subjectID, LocalDate date, String status) {
+        SlNum = slNum;
+        this.USN = USN;
+        this.student = student;
+        this.subjectID = subjectID;
+        this.date = date;
+        this.status = status;
+    }
+
+    public Attendance(Long USN, Student student, Long subjectID, LocalDate date, String status) {
+        this.USN = USN;
+        this.student = student;
+        this.subjectID = subjectID;
+        this.date = date;
+        this.status = status;
+    }
+
     // Getters and setters
-    public String getUSN() {
+    public Long getUSN() {
         return USN;
     }
 
-    public void setUSN(String USN) {
+    public void setUSN(Long USN) {
         this.USN = USN;
     }
 
     public Long getSubjectID() {
-        return SubjectID;
+        return subjectID;
     }
 
     public void setSubjectID(Long subjectID) {
-        SubjectID = subjectID;
+        this.subjectID = subjectID;
     }
 
     public Student getStudent() {

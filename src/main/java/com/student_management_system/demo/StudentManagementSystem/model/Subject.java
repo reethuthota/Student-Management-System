@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table
 public class Subject {
-    @Id
+
     @SequenceGenerator(
             name = "subject_sequence",
             sequenceName = "subject_sequence",
@@ -18,10 +18,10 @@ public class Subject {
 //    @GeneratedValue(
 //            strategy = GenerationType.IDENTITY
 //    )
-
+    @Id
     private Long subjectID;
     private String subjectName;
-    private String Description;
+    private String description;
 
     public Subject() {
     }
@@ -29,12 +29,12 @@ public class Subject {
     public Subject(Long subjectID, String subjectName, String description) {
         this.subjectID = subjectID;
         this.subjectName = subjectName;
-        Description = description;
+        this.description = description;
     }
 
     public Subject(String subjectName, String description) {
         this.subjectName = subjectName;
-        Description = description;
+        this.description = description;
     }
 
     // Getters and setters
@@ -55,10 +55,10 @@ public class Subject {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/subjects")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class SubjectController {
     @Autowired
     private SubjectService subjectService;
@@ -21,8 +22,11 @@ public class SubjectController {
     public Subject getSubjectById(@PathVariable Long id) {
         return subjectService.getSubjectById(id);
     }
-
-    @PostMapping("/")
+    @PutMapping("/{id}")
+    public Subject updateSubject(@PathVariable Long id, @RequestBody Subject subject) {
+        return subjectService.updateSubject(id, subject);
+    }
+    @PostMapping()
     public Subject saveSubject(@RequestBody Subject subject) {
         return subjectService.saveSubject(subject);
     }

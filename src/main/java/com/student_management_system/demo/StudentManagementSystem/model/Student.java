@@ -20,7 +20,7 @@ public class Student {
     )
 
     @Id
-    private String USN;
+    private Long USN;
     private String firstName;
     private String lastName;
     private String email;
@@ -32,7 +32,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(String USN, String firstName, String lastName, String email, LocalDate dob) {
+    public Student(Long USN, String firstName, String lastName, String email, LocalDate dob) {
         this.USN = USN;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,11 +47,11 @@ public class Student {
         this.dob = dob;
     }
 
-    public String getUSN() {
+    public Long getUSN() {
         return USN;
     }
 
-    public void setUSN(String USN) {
+    public void setUSN(Long USN) {
         this.USN = USN;
     }
 

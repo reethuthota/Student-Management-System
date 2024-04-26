@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/students")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class StudentController {
     @Autowired
     private StudentService studentService;
@@ -23,11 +24,14 @@ public class StudentController {
         return studentService.getStudentById(id);
     }
 
-    @PostMapping("/")
-    public Student saveStudent(@RequestBody Student student) {
-        return studentService.saveStudent(student);
+    @PostMapping()
+    public Student addNewStudent(@RequestBody Student student) {
+        return studentService.addNewStudent(student);
     }
-
+    @PutMapping("/{id}")
+    public void updateStudent(@PathVariable Long id, @RequestBody Student updatedStudent) {
+        studentService.updateStudent(id, updatedStudent);
+    }
     @DeleteMapping("/{id}")
     public void deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
